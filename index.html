@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>スピリーディングチャネリングおみくじ</title>
+
+  <!-- 🔒 検索避け（noindex） -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+      background: radial-gradient(circle at top, #fff8ff 0%, #ffeaf7 35%, #e6f8ff 70%, #fdf6ff 100%);
+      background-attachment: fixed;
+    }
+
+    .omikuji-wrapper {
+      max-width: 480px;
+      margin: 40px auto;
+      padding: 26px 22px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 10px 25px rgba(148, 132, 176, 0.25);
+      text-align: center;
+      position: relative;
+      border: 1px solid rgba(255, 210, 236, 0.9);
+    }
+
+    .omikuji-title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #c5467c;
+      font-weight: 700;
+    }
+
+    .omikuji-sub {
+      font-size: 0.95rem;
+      color: #8b607c;
+      margin-bottom: 18px;
+    }
+
+    .omikuji-button {
+      padding: 12px 32px;
+      font-size: 1.05rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ff9ac7, #ff7fa7, #ffb5d8);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 6px 14px rgba(255, 125, 176, 0.5);
+    }
+
+    /* ▼ 結果エリア：初期は完全非表示 */
+    .omikuji-result {
+      display: none;
+      margin-top: 22px;
+      padding: 18px 16px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #fffefe, #fff7ff);
+      border: 2px solid #ffd3ea;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .omikuji-result.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .omikuji-message {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      white-space: pre-line;
+      color: #69445e;
+    }
+
+    .omikuji-luck {
+      font-size: 0.95rem;
+      margin-top: 12px;
+      font-weight: 700;
+      color: #c5467c;
+    }
+
+    .omikuji-description {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #73546a;
+    }
+  </style>
+</head>
+<body>
+
+<div class="omikuji-wrapper">
+  <div class="omikuji-title">スピリーディングチャネリングおみくじ</div>
+
+  <div class="omikuji-sub">
+    ボタンを押して、チャネリングメッセージを受け取ってね✨
+  </div>
+
+  <button class="omikuji-button" id="omikujiButton">
+    メッセージを受け取る🎁
+  </button>
+
+  <!-- ▼ ボタン直下：最初は完全非表示 -->
+  <div class="omikuji-result" id="omikujiResult">
+    <div class="omikuji-message" id="omikujiMessage"></div>
+    <div class="omikuji-luck" id="omikujiLuck"></div>
+  </div>
+
+  <div class="omikuji-description">
+    このメッセージは、スピリーディング講座のみんながチャネリングしてくれました♪<br>
+    あなたの日々のセンシングプラクティスの後押しになりますように👼
+  </div>
+</div>
+
+<script>
+  const omikujiList = [
+    {
+      luck: "大天使ラファエルより",
+      message: "あなたの癒しはいつもみんなに届いています。\nいつも世界を癒してくれてありがとう。"
+    },
+    {
+      luck: "天照大御神より",
+      message: "あなたの輝きは世界をあまねく照らしています＾＾\nもっともっと輝いて。"
+    },
+    {
+      luck: "大天使ミカエルより",
+      message: "私はいつも君のそばにいるよ。\n君の勇気は私の力になっているよ。"
+    }
+    /* ← ここに、これまで追加してきた omikujiList が続く想定 */
+  ];
+
+  const button = document.getElementById("omikujiButton");
+  const resultBox = document.getElementById("omikujiResult");
+  const messageEl = document.getElementById("omikujiMessage");
+  const luckEl = document.getElementById("omikujiLuck");
+
+  button.addEventListener("click", () => {
+    const result = omikujiList[Math.floor(Math.random() * omikujiList.length)];
+    messageEl.textContent = result.message;
+    luckEl.textContent = result.luck;
+    resultBox.classList.add("show");
+  });
+</script>
+
+</body>
+</html>
